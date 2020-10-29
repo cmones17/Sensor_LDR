@@ -1,0 +1,29 @@
+float x;
+void setup() {
+  // put your setup code here, to run once:
+pinMode(A0,INPUT);
+pinMode(13,OUTPUT);
+Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+float v,r,I;
+delay(1500);
+v=analogRead(A0);
+v=v*(5.0/1024.0);
+r=613*((5/v)-1);
+I=pow((r/126951),-1.1655);
+Serial.println("Monitor");
+Serial.println("Voltaje entrada= ");
+Serial.print(v);
+Serial.println(" Volts");
+Serial.print("Resistencia= ");
+Serial.print(r);
+Serial.println(" Ohms");
+Serial.print("Intensidad luminosa= ");
+Serial.print(I);
+Serial.println("LUX\n");
+if(I<2000)
+digitalWrite(13,HIGH);
+}
